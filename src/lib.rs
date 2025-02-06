@@ -396,6 +396,10 @@ impl<'a, T> WebView<'a, T> {
             _phantom: PhantomData,
         }
     }
+    
+    pub fn get_inner(&self) -> Option<*mut CWebView> {
+        self.inner
+    }
 
     fn user_data_wrapper_ptr(&self) -> *mut UserData<'a, T> {
         unsafe { webview_get_user_data(self.inner.unwrap()) as _ }
