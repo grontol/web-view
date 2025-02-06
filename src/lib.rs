@@ -321,7 +321,7 @@ struct UserData<'a, T> {
 /// [`WebViewBuilder`]: struct.WebViewBuilder.html
 #[derive(Debug)]
 pub struct WebView<'a, T: 'a> {
-    inner: Option<*mut CWebView>,
+    pub inner: Option<*mut CWebView>,
     _phantom: PhantomData<&'a mut T>,
 }
 
@@ -395,10 +395,6 @@ impl<'a, T> WebView<'a, T> {
             live: Arc::downgrade(&self.user_data_wrapper().live),
             _phantom: PhantomData,
         }
-    }
-    
-    pub fn get_inner(&self) -> Option<*mut CWebView> {
-        self.inner
     }
 
     fn user_data_wrapper_ptr(&self) -> *mut UserData<'a, T> {
